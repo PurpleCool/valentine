@@ -18,6 +18,7 @@ const Image = styled.img`
 export default function ClickHeart({ onClickHandler }: ClickHeartProps) {
   return (
     <>
+      <div>ClickHeart</div>
       <label onClick={onClickHandler}>
         <Image
           role='button'
