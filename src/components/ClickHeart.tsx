@@ -20,12 +20,7 @@ export default function ClickHeart({ onClickHandler }: ClickHeartProps) {
     <>
       <div>ClickHeart</div>
       <label onClick={onClickHandler}>
-        <Image
-          role='button'
-          src={clickHeart}
-          className='logo react'
-          alt='React logo'
-        />
+        <Image role='button' alt='' src={clickHeart} className='logo react' />
       </label>
     </>
   );

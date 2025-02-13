@@ -5,8 +5,15 @@ import Counter from "./components/Counter";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [clicked, setClicked] = useState<boolean>(false);
+
   const updateClickCount = () => {
     setCount((count) => count + 1);
+    setClicked(true);
+    const timerId = setTimeout(() => {
+      setClicked(false);
+      clearTimeout(timerId);
+    }, 500);
   };
 
   return (
@@ -14,7 +21,7 @@ function App() {
       {count < 14 ? (
         <>
           <ClickHeart onClickHandler={updateClickCount} />
-          <Counter count={count} />
+          {clicked && <Counter clicked={clicked} count={count} />}
         </>
       ) : (
         <p>sdld</p>

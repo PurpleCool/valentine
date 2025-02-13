@@ -1,19 +1,28 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 interface CounterProps {
   count: number;
+  clicked?: boolean;
 }
 
 const Title = styled.h1`
-  font-size: 5em;
+  font-size: 10rem;
   text-align: center;
-  color: var(--reddish);
+  color: #f5f5dc;
+  transform: translateY(-60%);
+
+  background-clip: text;
+  -webkit-background-clip: text; /* For Safari */
+
+  /* Add glow effect */
+  text-shadow: 0 0 8px var(--red), 0 0 15px var(--red), 0 0 20px var(--red),
+    0 0 30px var(--reddish), 0 0 45px var(--reddish), 0 0 60px var(--reddish),
+    0 0 80px var(--magenta), 0 0 120px var(--magenta), 0 0 150px var(--magenta); /* Neon glow with fading edges */
 `;
 
 const fadeInOut = keyframes`
   0% {
     opacity: 0;
-    visibility: visible
   }
 
   50% {
@@ -22,22 +31,32 @@ const fadeInOut = keyframes`
   
   100% {
     opacity: 0;
-    visibility: hidden;
   }
 `;
+interface FadeInOutProps {
+  $isClicked: boolean;
+}
 
-const FadeInOut = styled.div`
-  display: inline-block;
-  animation: ${fadeInOut};
-  animation-duration: 1s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: 1;
-  -webkit-animation-fill-mode: forwards;
+const FadeInOut = styled.div<FadeInOutProps>`
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  ${({ $isClicked }) =>
+    $isClicked &&
+    css`
+      animation: ${fadeInOut};
+      animation-duration: 500ms;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: 1;
+      -webkit-animation-fill-mode: forwards;
+    `}
 `;
 
-export default function Counter({ count }: CounterProps) {
+export default function Counter({ count, clicked = false }: CounterProps) {
   return (
-    <FadeInOut>
+    <FadeInOut $isClicked={clicked}>
       <Title>{count}</Title>
     </FadeInOut>
   );
