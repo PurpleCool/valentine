@@ -22,13 +22,9 @@ const Title = styled.h1`
 
 const fadeInOut = keyframes`
   0% {
-    opacity: 0;
-  }
-
-  50% {
     opacity: 1;
   }
-  
+
   100% {
     opacity: 0;
   }
@@ -42,12 +38,14 @@ const FadeInOut = styled.div<FadeInOutProps>`
   position: absolute;
   top: 50%;
   left: 50%;
+  user-select: none;
+  pointer-events: none;
 
   ${({ $isClicked }) =>
     $isClicked &&
     css`
       animation: ${fadeInOut};
-      animation-duration: 500ms;
+      animation-duration: 1000ms;
       animation-timing-function: ease-in-out;
       animation-iteration-count: 1;
       -webkit-animation-fill-mode: forwards;

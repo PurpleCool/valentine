@@ -6,6 +6,8 @@ interface ClickHeartProps {
 }
 
 const Image = styled.img`
+  user-select: none;
+  pointer-events: auto;
   height: 15em;
   padding: 2em;
   will-change: filter;
@@ -16,12 +18,13 @@ const Image = styled.img`
 `;
 
 export default function ClickHeart({ onClickHandler }: ClickHeartProps) {
+  const handleMouseOver = (event: React.MouseEvent) => {
+    event.preventDefault();
+  };
+
   return (
-    <>
-      <div>ClickHeart</div>
-      <label onClick={onClickHandler}>
-        <Image role='button' alt='' src={clickHeart} className='logo react' />
-      </label>
-    </>
+    <label onClick={onClickHandler}>
+      <Image alt='' title='' src={clickHeart} onMouseOver={handleMouseOver} />
+    </label>
   );
 }

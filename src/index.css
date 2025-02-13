@@ -20,6 +20,11 @@
   -moz-osx-font-smoothing: grayscale;
 
   box-sizing: border-box;
+
+  user-select: none; /* Standard */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 body {
